@@ -1,0 +1,14 @@
+-- Shop Schema Alterations
+ALTER TABLE artworks ADD COLUMN for_sale BOOLEAN DEFAULT FALSE;
+ALTER TABLE artworks ADD COLUMN is_limited_drop BOOLEAN DEFAULT FALSE;
+ALTER TABLE artworks ADD COLUMN drop_end_time DATETIME DEFAULT NULL;
+
+CREATE TABLE IF NOT EXISTS wishlists (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(36) NOT NULL,
+    artwork_id VARCHAR(36) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY(user_id, artwork_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (artwork_id) REFERENCES artworks(id) ON DELETE CASCADE
+);

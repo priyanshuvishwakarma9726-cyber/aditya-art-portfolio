@@ -1,0 +1,5 @@
+ALTER TABLE blog_posts ADD COLUMN cover_image VARCHAR(512) DEFAULT NULL;
+ALTER TABLE blog_posts ADD COLUMN category_id INT DEFAULT NULL;
+ALTER TABLE blog_posts ADD COLUMN tags VARCHAR(255) DEFAULT NULL;
+
+ALTER TABLE blog_posts ADD CONSTRAINT fk_blog_category FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL;
